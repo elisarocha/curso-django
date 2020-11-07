@@ -8,20 +8,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Seja bem vindo</h1>
 
-    <p>Agora são: {{ now }}</p>
+<form method="POST">
+    {% csrf_token %}
 
-    <ul>
-    {% for transação in transações %}
+    {{ form.as_p }}
 
-        {% if transação == "t1" %}
-            <li><b>{{ transação }}</b></li>
-        {% else %}
-            <li>{{ transação }}</li>
-        {% endif %}
+    <button type="submit">Salvar</button>
+    {% if transação %}
+        <a href="{% url 'url_delete' transação.id %}">Remover</a>
+    {% endif %}
+</form>
 
-    {% endfor %}
-    </ul>
 </body>
 </html>
